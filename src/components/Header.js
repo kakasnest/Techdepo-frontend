@@ -14,6 +14,9 @@ function Header() {
       <NavLink className="header--link" to="/categories">
         Categories
       </NavLink>
+      <NavLink className="header--link" to="/register">
+        Register
+      </NavLink>
     </header>
   );
 }
