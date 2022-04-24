@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Category from "../elements/Category";
+import "../../styles/categories.css";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -9,16 +11,15 @@ function Categories() {
       const { data } = await axios.get("http://localhost:5000/api/categories/");
       setCategories(data);
     };
-
     getCategories();
   }, []);
 
   return (
-    <ul>
+    <div className="categories">
       {categories.map((c) => {
-        return <li key={c._id}>{c.name}</li>;
+        return <Category key={c._id} {...c} />;
       })}
-    </ul>
+    </div>
   );
 }
 

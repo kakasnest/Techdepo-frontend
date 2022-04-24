@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;1,300&display=swap");
+
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0px;
   padding: 0px;
+}
+
+.App {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
