@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Category from "../elements/Category";
-import "../../styles/categories.css";
+import Category from "../components/elements/Category";
+import "../styles/categories.css";
 
 function Categories() {
   const [categories, setCategories] = useState([]);

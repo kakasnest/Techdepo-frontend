@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/header.css";
-import logo from "../assets/images/Techdepo.webp";
+import logo from "../images/Techdepo.webp";
 import MenuLink from "./elements/MenuLink";
 
 function Header() {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormOption from "../elements/FormOption";
+import FormOption from "../components/elements/FormOption";
 
 function Register() {
   const [formData, setFormData] = useState({

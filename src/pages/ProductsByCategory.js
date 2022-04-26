@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductLink from "../elements/ProductLink.js";
-import "../../styles/products.css";
+import ProductLink from "../components/elements/ProductLink.js";
+import "../styles/products.css";
 import { useNavigate } from "react-router-dom";
 
 function ProductsByCategory() {
@@ -21,8 +21,9 @@ function ProductsByCategory() {
       );
       setProducts(data);
     };
+
     getProducts();
-  }, []);
+  }, [categoryId]);
 
   return (
     <div>
