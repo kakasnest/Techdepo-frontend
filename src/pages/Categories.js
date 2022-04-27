@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Category from "../components/elements/Category";
+import CategoryLink from "../components/elements/CategoryLink";
 import "../styles/categories.css";
 
 function Categories() {
@@ -17,7 +17,7 @@ function Categories() {
   return (
     <div className="categories">
       {categories.map((c) => {
-        return <Category key={c._id} {...c} />;
+        return <CategoryLink key={c._id} {...c} />;
       })}
     </div>
   );

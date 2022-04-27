@@ -17,10 +17,9 @@ function Product() {
         `http://localhost:5000/api/products/${productId}`
       );
       setProduct(data);
-      console.log(product);
     };
     getProduct();
-  }, []);
+  }, [productId]);
 
   return (
     <div>
