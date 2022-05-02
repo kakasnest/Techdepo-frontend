@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import CategoryLink from "../components/elements/CategoryLink";
+import CategoryLink from "../components/sub/CategoryLink";
 import "../styles/categories.css";
 
 function Categories() {

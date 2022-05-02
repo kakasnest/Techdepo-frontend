@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductLink from "../components/elements/ProductLink.js";
+import ProductLink from "../components/sub/ProductLink.js";
 import "../styles/products.css";
 import { useNavigate } from "react-router-dom";
 

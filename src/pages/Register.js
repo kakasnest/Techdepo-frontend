@@ -1,8 +1,11 @@
 import { useState } from "react";
-import FormOption from "../components/elements/FormOption";
+import FormOption from "../components/sub/FormOption";
+import axios from "axios";
 
 function Register() {
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -10,15 +13,35 @@ function Register() {
   const formOptions = [
     {
       id: 1,
-      type: "email",
-      name: "email",
-      value: formData.email,
+      type: "text",
+      name: "firstName",
+      placeholder: "John",
+      value: formData.firstName,
+      description: "First name",
     },
     {
       id: 2,
       type: "text",
+      name: "lastName",
+      placeholder: "Doe",
+      value: formData.lastName,
+      description: "Last name",
+    },
+    {
+      id: 3,
+      type: "email",
+      name: "email",
+      placeholder: "myemail@email.com",
+      value: formData.email,
+      description: "Email",
+    },
+    {
+      id: 4,
+      type: "password",
       name: "password",
+      placeholder: "password",
       value: formData.password,
+      description: "Password",
     },
   ];
 
@@ -27,21 +50,46 @@ function Register() {
       target: { name, value },
     } = event;
 
-    setFormData((currentUserObject) => {
+    setFormData((prev) => {
       return {
-        ...currentUserObject,
+        ...prev,
         [name]: value,
       };
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const dataToSend = {
+      user: {
+        name: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+        },
+        email: formData.email,
+        password: formData.password,
+      },
+    };
+
+    try {
+      const {
+        data: { message },
+      } = await axios.post("/api/auth/register", dataToSend);
+      console.log(message);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <div>
       <p>Register</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         {formOptions.map((f) => (
-          <FormOption {...f} onChange={handleChange} />
+          <FormOption {...f} onChange={handleChange} key={f.id} />
         ))}
+        <button>Submit</button>
       </form>
     </div>
   );

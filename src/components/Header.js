@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/header.css";
 import logo from "../images/Techdepo.webp";
-import MenuLink from "./elements/MenuLink";
+import MenuLink from "./sub/MenuLink";
 
 function Header() {
   const menu = [
@@ -15,6 +15,16 @@ function Header() {
       name: "Categories",
       to: "/categories",
     },
+    {
+      id: 3,
+      name: "Register",
+      to: "/register",
+    },
+    {
+      id: 4,
+      name: "Login",
+      to: "/login",
+    },
   ];
 
   return (
@@ -24,7 +34,7 @@ function Header() {
       </Link>
 
       {menu.map((m) => (
-        <MenuLink {...m} />
+        <MenuLink {...m} key={m.id} />
       ))}
     </header>
   );
