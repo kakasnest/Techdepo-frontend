@@ -1,10 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Categories from "../pages/Categories";
-import Home from "../pages/Home";
-import ProductsByCategory from "../pages/ProductsByCategory";
-import Product from "../pages/Product";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
+import {
+  Categories,
+  ProductsByCategory,
+  Product,
+  Register,
+  Login,
+  Home,
+} from "./pages";
 
 function Main() {
   return (

@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductLink from "../components/sub/ProductLink.js";
-import "../styles/products.css";
 import { useNavigate } from "react-router-dom";
+
+import ProductLink from "../common/ProductLink.js";
+import "../../styles/products.css";
 
 function ProductsByCategory() {
   const { categoryId } = useParams();
@@ -16,9 +17,7 @@ function ProductsByCategory() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios.get(
-        `http://localhost:5000/api/categories/${categoryId}`
-      );
+      const { data } = await axios.get(`/api/categories/${categoryId}`);
       setProducts(data);
     };
 

@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import CategoryLink from "../components/sub/CategoryLink";
-import "../styles/categories.css";
+import "../../styles/categories.css";
+
+import { CategoryLink } from "../common/";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const getCategories = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/categories/");
+      const { data } = await axios.get("/api/categories/");
       setCategories(data);
     };
     getCategories();

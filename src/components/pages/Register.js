@@ -1,9 +1,12 @@
 import { useState } from "react";
-import FormOption from "../components/sub/FormOption";
 import axios from "axios";
 
-function Login() {
+import FormOption from "../common/FormOption";
+
+function Register() {
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -11,6 +14,22 @@ function Login() {
   const formOptions = [
     {
       id: 1,
+      type: "text",
+      name: "firstName",
+      placeholder: "John",
+      value: formData.firstName,
+      description: "First name",
+    },
+    {
+      id: 2,
+      type: "text",
+      name: "lastName",
+      placeholder: "Doe",
+      value: formData.lastName,
+      description: "Last name",
+    },
+    {
+      id: 3,
       type: "email",
       name: "email",
       placeholder: "myemail@email.com",
@@ -18,7 +37,7 @@ function Login() {
       description: "Email",
     },
     {
-      id: 2,
+      id: 4,
       type: "password",
       name: "password",
       placeholder: "password",
@@ -45,6 +64,10 @@ function Login() {
 
     const dataToSend = {
       user: {
+        name: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+        },
         email: formData.email,
         password: formData.password,
       },
@@ -53,8 +76,7 @@ function Login() {
     try {
       const {
         data: { message },
-      } = await axios.post("/api/auth/login", dataToSend);
-      console.log(message);
+      } = await axios.post("/api/auth/register", dataToSend);
     } catch (err) {
       console.log(err.message);
     }
@@ -62,7 +84,7 @@ function Login() {
 
   return (
     <div>
-      <p>Login</p>
+      <p>Register</p>
       <form onSubmit={handleSubmit}>
         {formOptions.map((f) => (
           <FormOption {...f} onChange={handleChange} key={f.id} />
@@ -73,4 +95,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
