@@ -21,6 +21,11 @@ const menu = [
     name: "Login",
     to: "/login",
   },
+  {
+    id: 5,
+    name: "Add a product",
+    to: "/addP_temp",
+  },
 ];
 
 const Menu = () => {

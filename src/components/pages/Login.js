@@ -4,10 +4,11 @@ import axios from "axios";
 import FormOption from "../common/FormOption";
 
 function Login() {
-  const [formData, setFormData] = useState({
+  const initialForm = {
     email: "",
     password: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialForm);
 
   const formOptions = [
     {
@@ -55,6 +56,7 @@ function Login() {
       const {
         data: { message },
       } = await axios.post("/api/auth/login", dataToSend);
+      setFormData(initialForm);
     } catch (err) {
       console.log(err.message);
     }

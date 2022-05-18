@@ -1,17 +1,19 @@
 import React from "react";
 
-function FormOption({ type, name, value, onChange, description, placeholder }) {
+function FormOption(props) {
   return (
-    <div>
-      <p>{description}:</p>
+    <>
+      <p>{props.description}</p>
       <input
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
+        type={props.type}
+        placeholder={props.placeholder}
+        name={props.name}
+        value={props.value}
+        checked={props.checked}
+        onChange={props.onChange}
+        multiple={props.multiple}
       />
-    </div>
+    </>
   );
 }
 

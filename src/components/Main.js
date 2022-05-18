@@ -7,6 +7,7 @@ import {
   Login,
   Home,
 } from "./pages";
+import AddProduct from "./pages/temp_AddProduct";
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
       <Route path="/products/:productId" element={<Product />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/addP_temp" element={<AddProduct />} />
       <Route path="*" element={<Home />} />
     </Routes>
   );

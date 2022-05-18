@@ -4,12 +4,13 @@ import axios from "axios";
 import FormOption from "../common/FormOption";
 
 function Register() {
-  const [formData, setFormData] = useState({
+  const initialForm = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialForm);
 
   const formOptions = [
     {
@@ -77,6 +78,7 @@ function Register() {
       const {
         data: { message },
       } = await axios.post("/api/auth/register", dataToSend);
+      setFormData(initialForm);
     } catch (err) {
       console.log(err.message);
     }
