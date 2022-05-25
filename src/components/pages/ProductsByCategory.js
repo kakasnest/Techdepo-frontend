@@ -17,7 +17,9 @@ function ProductsByCategory() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios.get(`/api/categories/${categoryId}`);
+      const { data } = await axios.get(
+        `/api/products/?categories=${categoryId}`
+      );
       setProducts(data);
     };
 

@@ -35,7 +35,6 @@ const AddProduct = () => {
       id: 3,
       type: "number",
       name: "stock",
-      placeholder: "0",
       value: formData.stock,
       description: "Stock",
     },
@@ -43,7 +42,6 @@ const AddProduct = () => {
       id: 4,
       type: "number",
       name: "price",
-      placeholder: "0",
       value: formData.price,
       description: "Price",
     },
@@ -69,21 +67,6 @@ const AddProduct = () => {
     });
   };
 
-  const handleCategories = (event) => {
-    const {
-      target: { name },
-    } = event;
-
-    setCategories(
-      categories.map((c) => {
-        if (c.name === name) {
-          return { ...c, checked: !c.checked };
-        }
-        return c;
-      })
-    );
-  };
-
   const handleImages = (event) => {
     const {
       target: { files },
@@ -97,30 +80,21 @@ const AddProduct = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const imagesToUpload = new FormData();
-    imagesToUpload.append("images", images);
-    const filteredCategories = categories.filter((c) => {
-      if (c.checked) return true;
-      return false;
+    const product = new FormData();
+    product.append("name", formData.name);
+    product.append("description", formData.brand);
+    product.append("price", formData.price);
+    product.append("stock", formData.stock);
+    categories.forEach((category) => {
+      product.append("categories", category._id);
+    });
+    images.forEach((image) => {
+      product.append("product_images", image);
     });
 
-    const dataToSend = {
-      product: {
-        name: formData.name,
-        description: {
-          brand: formData.brand,
-        },
-        price: formData.price,
-        stock: formData.stock,
-        categories: filteredCategories.map((c) => c._id),
-        images: images.map((i) => "/api/images/" + i.name),
-      },
-    };
-
     try {
-      const respForNewProduct = await axios.post("/api/products/", dataToSend);
-      const respForImageUpload = await axios.post("/images/", imagesToUpload);
-      console.log(respForNewProduct, respForImageUpload);
+      const respForImageUpload = await axios.post("/api/products/", product);
+      console.log(respForImageUpload);
       setFormData(initialForm);
     } catch (err) {
       console.log(err.message);
@@ -131,15 +105,7 @@ const AddProduct = () => {
     const getCategories = async () => {
       try {
         const { data } = await axios.get("/api/categories");
-        const categoriesArray = data.map((c) => {
-          return {
-            ...c,
-            checked: false,
-            type: "checkbox",
-            description: c.name,
-          };
-        });
-        setCategories(categoriesArray);
+        setCategories(data);
       } catch (err) {
         console.log(err.message);
       }
@@ -157,9 +123,6 @@ const AddProduct = () => {
             return <FormOption {...o} onChange={handleImages} key={o.id} />;
           }
           return <FormOption {...o} onChange={handleChange} key={o.id} />;
-        })}
-        {categories.map((c) => {
-          return <FormOption {...c} onChange={handleCategories} key={c._id} />;
         })}
         <button>Submit</button>
       </form>
